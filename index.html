@@ -74,6 +74,136 @@
                     <div class="divTableCell" style="font-size: 17px;text-align: center;background-color: #a3a3a3;border: 1px solid black;border-left: none;">&nbsp;</div>
                 </div>
             </div>
+
+            <div id="tools">
+                <span>Dice:</span>
+                <button id="remove-die">-</button>
+                <button id="add-die">+</button>
+                <span>(Click anywhere to roll)</span>
+            </div>
+
+            <div id="dice-container">
+                <div class="dice-row">
+
+                    <div class="die-container">
+                        <div class="die-spacer"></div>
+                        <div class="spin die">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 80 80">
+                                        <rect x="2" y="2" width="76" height="76" rx="18" fill="none" stroke-width="4"/>
+                                        <g stroke-width="0" data-die-face>
+                                            <circle cx="20" cy="20" r="9" class="die-pip four five six" /> 
+                                            <circle cx="20" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="20" cy="60" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="40" cy="40" r="9" class="die-pip one three five" /> 
+                                            <circle cx="60" cy="20" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="60" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="60" cy="60" r="9" class="die-pip four five six" />
+                                        </g>
+                                        <!--
+                                        <g class="die-hold" transform="translate(65,0)" onclick="event.stopPropagation();" >
+                                            <rect x="1" y="1" width="13" height="13" rx="4" fill="white" stroke-width="1" />
+                                            <path d="M0,10  l3,-3  3,3  5,-10  4,3  L7,15" fill="#0d0" stroke-width="0" />
+                                        </g>
+                                        -->
+                                    </svg>
+                        </div>
+                    </div>
+                    <div class="die-container">
+                        <div class="die-spacer"></div>
+                        <div class="spin die">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 80 80">
+                                        <rect x="2" y="2" width="76" height="76" rx="18" fill="none" stroke-width="4"/>
+                                        <g stroke-width="0" data-die-face>
+                                            <circle cx="20" cy="20" r="9" class="die-pip four five six" /> 
+                                            <circle cx="20" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="20" cy="60" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="40" cy="40" r="9" class="die-pip one three five" /> 
+                                            <circle cx="60" cy="20" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="60" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="60" cy="60" r="9" class="die-pip four five six" />
+                                        </g>
+                                        <!--
+                                        <g class="die-hold" transform="translate(65,0)" onclick="event.stopPropagation();" >
+                                            <rect x="1" y="1" width="13" height="13" rx="4" fill="white" stroke-width="1" />
+                                            <path d="M0,10  l3,-3  3,3  5,-10  4,3  L7,15" fill="#0d0" stroke-width="0" />
+                                        </g>
+                                        -->
+                                    </svg>
+                        </div>
+                    </div>
+                    <div class="die-container">
+                        <div class="die-spacer"></div>
+                        <div class="spin die">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 80 80">
+                                        <rect x="2" y="2" width="76" height="76" rx="18" fill="none" stroke-width="4"/>
+                                        <g stroke-width="0" data-die-face>
+                                            <circle cx="20" cy="20" r="9" class="die-pip four five six" /> 
+                                            <circle cx="20" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="20" cy="60" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="40" cy="40" r="9" class="die-pip one three five" /> 
+                                            <circle cx="60" cy="20" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="60" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="60" cy="60" r="9" class="die-pip four five six" />
+                                        </g>
+                                        <!--
+                                        <g class="die-hold" transform="translate(65,0)" onclick="event.stopPropagation();" >
+                                            <rect x="1" y="1" width="13" height="13" rx="4" fill="white" stroke-width="1" />
+                                            <path d="M0,10  l3,-3  3,3  5,-10  4,3  L7,15" fill="#0d0" stroke-width="0" />
+                                        </g>
+                                        -->
+                                    </svg>
+                        </div>
+                    </div>
+                    <div class="die-container">
+                        <div class="die-spacer"></div>
+                        <div class="spin die">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 80 80">
+                                        <rect x="2" y="2" width="76" height="76" rx="18" fill="none" stroke-width="4"/>
+                                        <g stroke-width="0" data-die-face>
+                                            <circle cx="20" cy="20" r="9" class="die-pip four five six" /> 
+                                            <circle cx="20" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="20" cy="60" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="40" cy="40" r="9" class="die-pip one three five" /> 
+                                            <circle cx="60" cy="20" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="60" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="60" cy="60" r="9" class="die-pip four five six" />
+                                        </g>
+                                        <!--
+                                        <g class="die-hold" transform="translate(65,0)" onclick="event.stopPropagation();" >
+                                            <rect x="1" y="1" width="13" height="13" rx="4" fill="white" stroke-width="1" />
+                                            <path d="M0,10  l3,-3  3,3  5,-10  4,3  L7,15" fill="#0d0" stroke-width="0" />
+                                        </g>
+                                        -->
+                                    </svg>
+                        </div>
+                    </div>
+                    <div class="die-container">
+                        <div class="die-spacer"></div>
+                        <div class="spin die">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 80 80">
+                                        <rect x="2" y="2" width="76" height="76" rx="18" fill="none" stroke-width="4"/>
+                                        <g stroke-width="0" data-die-face>
+                                            <circle cx="20" cy="20" r="9" class="die-pip four five six" /> 
+                                            <circle cx="20" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="20" cy="60" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="40" cy="40" r="9" class="die-pip one three five" /> 
+                                            <circle cx="60" cy="20" r="9" class="die-pip two three four five six" /> 
+                                            <circle cx="60" cy="40" r="9" class="die-pip six" /> 
+                                            <circle cx="60" cy="60" r="9" class="die-pip four five six" />
+                                        </g>
+                                        <!--
+                                        <g class="die-hold" transform="translate(65,0)" onclick="event.stopPropagation();" >
+                                            <rect x="1" y="1" width="13" height="13" rx="4" fill="white" stroke-width="1" />
+                                            <path d="M0,10  l3,-3  3,3  5,-10  4,3  L7,15" fill="#0d0" stroke-width="0" />
+                                        </g>
+                                        -->
+                                    </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="dexter" style="border: none;padding: 0px!important;width: 0px!important;margin-left: 19rem;margin-top: 8rem;position: absolute;">
                 <div class="dexter__container">
                     <div class="dexter__body">

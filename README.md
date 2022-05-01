@@ -10,5 +10,5 @@ Il peut arriver lors d’un tour que le résultat ne convienne pas au joueur et 
 Le gagnant d’une partie de Yams est le joueur qui comptabilisera le plus de points à la fin des 10 coups.
 
 # La feuille de score du Yams :
-![regles](https://github.com/Pischedda/Yam-s/blob/main/FeuilleYam's.jpg)
+![regles](https://github.com/Pischedda/Yam-s/blob/main/Image/FeuilleYam's.jpg)
 

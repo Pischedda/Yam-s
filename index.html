@@ -88,6 +88,7 @@
                 <span>(Click anywhere to roll)</span>
             </div>
 
+
             <div id="dice-container" class="PlayerOne" style="margin-top: 20rem; margin-left: 25rem; position: absolute;">
                 <div class="dice-row">
 
@@ -253,44 +254,44 @@
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe">Total de 1</div>
                         <div class="divTableCell" style="border-right: 3px solid black;"></div>
-                        <div class="divTableCell divTotalDe">Brelan</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell divTotalDe" id="BrelanPlayerTwo">Brelan</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="BrelanPointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe">Total de 2</div>
-                        <div class="divTableCell" style="border-right: 3px solid black;">&nbsp;</div>
-                        <div class="divTableCell divTotalDe">Petite Suite</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell" style="border-right: 3px solid black;"></div>
+                        <div class="divTableCell divTotalDe" id="PetiteSuitePlayerTwo">Petite Suite</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="PetiteSuitePointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe">Total de 3</div>
-                        <div class="divTableCell" style="border-right: 3px solid black;">&nbsp;</div>
-                        <div class="divTableCell divTotalDe">Grande Suite</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell" style="border-right: 3px solid black;"></div>
+                        <div class="divTableCell divTotalDe" id="GrandeSuitePlayerTwo">Grande Suite</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="GrandeSuitePointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe">Total de 4</div>
-                        <div class="divTableCell" style="border-right: 3px solid black;">&nbsp;</div>
-                        <div class="divTableCell divTotalDe">Full</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell" style="border-right: 3px solid black;"></div>
+                        <div class="divTableCell divTotalDe" id="FullPlayerTwo">Full</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="FullPointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe">Total de 5</div>
-                        <div class="divTableCell" style="border-right: 3px solid black;">&nbsp;</div>
-                        <div class="divTableCell divTotalDe">Carré</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell" style="border-right: 3px solid black;"></div>
+                        <div class="divTableCell divTotalDe" id="CarrePlayerTwo">Carré</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="CarrePointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe">Total de 6</div>
-                        <div class="divTableCell" style="border-right: 3px solid black;">&nbsp;</div>
-                        <div class="divTableCell divTotalDe">Yam</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell" style="border-right: 3px solid black;"></div>
+                        <div class="divTableCell divTotalDe" id="YamPlayerTwo">Yam</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="YamPointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell">Si le total de la colonne atteint ou dépasse 63.</div>
-                        <div class="divTableCell" style="border-right: 3px solid black;">&nbsp;</div>
-                        <div class="divTableCell" divTotalDe>&nbsp;</div>
-                        <div class="divTableCell">&nbsp;</div>
+                        <div class="divTableCell" style="border-right: 3px solid black;"></div>
+                        <div class="divTableCell divTotalDe" id="ChancePlayerTwo">Chance</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;" id="ChancePointPlayerTwo"></div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell divTotalDe" style="background-color: #d7d6d6;border-bottom: 1px solid black;">Total Colonne 1</div>
@@ -313,7 +314,24 @@
                 <button id="add-die">+</button>
                 <span>(Click anywhere to roll)</span>
             </div>
-
+            <div style="width: 100%; position: absolute;margin-top: 8rem;margin-left: 11.5rem;">
+                <button id="BrelanPlayerTwoButton" onclick="AddToTable('Brelan', 'PlayerTwo')" class="btn btn-primary" hidden>Brelan</button>
+                <button id="PetiteSuitePlayerTwoButton" onclick="AddToTable('PetiteSuite', 'PlayerTwo')" class="btn btn-primary" hidden>Petite Suite</button>
+                <button id="GrandeSuitePlayerTwoButton" onclick="AddToTable('GrandeSuite', 'PlayerTwo')" class="btn btn-primary" hidden>Grande Suite</button>
+                <button id="CarrePlayerTwoButton" onclick="AddToTable('Carre', 'PlayerTwo')" class="btn btn-primary" hidden>Carré</button>
+                <button id="FullPlayerTwoButton" onclick="AddToTable('Full', 'PlayerTwo')" class="btn btn-primary" hidden>Full</button>
+                <button id="YamPlayerTwoButton" onclick="AddToTable('Yam', 'PlayerTwo')" class="btn btn-primary" hidden>Yam</button>
+                <button id="ChancePlayerTwoButton" onclick="AddToTable('Chance', 'PlayerTwo')" class="btn btn-primary" hidden>Chance</button>
+            </div>
+            <div style="width: 100%; position: absolute;margin-top: 10rem;margin-left: 11.5rem;display: flex;">
+                <input class="form-control" style="width: 3rem;" id="BrelanInputPlayerTwo" hidden/>
+                <input class="form-control" style="width: 3rem;margin-left: 1rem;" id="PetiteSuiteInputPlayerTwo" hidden/>
+                <input class="form-control" style="width: 3rem;margin-left: 1rem;" id="GrandeSuiteInputPlayerTwo" hidden/>
+                <input class="form-control" style="width: 3rem;margin-left: 1rem;" id="FullInputPlayerTwo" hidden/>
+                <input class="form-control" style="width: 3rem;margin-left: 1rem;" id="CarreInputPlayerTwo" hidden/>
+                <input class="form-control" style="width: 3rem;margin-left: 1rem;" id="YamInputPlayerTwo" hidden/>
+                <input class="form-control" style="width: 3rem;margin-left: 1rem;" id="ChanceInputPlayerTwo" hidden/>
+            </div>
             <div id="dice-container" class="PlayerTwo" style="margin-top: 20rem; margin-left: 12rem; position: absolute;">
                 <div class="dice-row">
 
@@ -544,6 +562,8 @@
     "use strict";
 
     (function() {
+
+
         var _faceClasses = ["one", "two", "three", "four", "five", "six"],
             _diceRow = getElement(".dice-row"),
             _dieTemplate,
@@ -553,6 +573,7 @@
         function init() {
             _spinners = getElements(".spin");
             _faces = getElements("[data-die-face]");
+
         }
 
 
@@ -625,8 +646,10 @@
 
         _dieTemplate = createDie();
         init();
-        roll1();
-        roll2();
+        // roll1();
+        // roll2();
+
+
 
         //Tools...
         function getElement(selector, context) {

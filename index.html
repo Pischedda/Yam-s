@@ -88,7 +88,7 @@
                 <span>(Click anywhere to roll)</span>
             </div>
 
-            <div id="dice-container" style="margin-top: 20rem; margin-left: 25rem; position: absolute;">
+            <div id="dice-container" class="PlayerOne" style="margin-top: 20rem; margin-left: 25rem; position: absolute;">
                 <div class="dice-row">
 
                     <div class="die-container">
@@ -314,7 +314,7 @@
                 <span>(Click anywhere to roll)</span>
             </div>
 
-            <div id="dice-container" style="margin-top: 20rem; margin-left: 12rem; position: absolute;">
+            <div id="dice-container" class="PlayerTwo" style="margin-top: 20rem; margin-left: 12rem; position: absolute;">
                 <div class="dice-row">
 
                     <div class="die-container">
@@ -526,8 +526,10 @@
                 leftCache.hidden = true;
                 rightCache.hidden = false;
             }
-            startTimer(5); // 4 minutes in seconds
+            startTimer(590); // 4 minutes in seconds
             clearInterval(ticker);
+            var actualPlayer = actualPlayerFunction();
+            console.log(actualPlayer)
         }
 
 
@@ -574,7 +576,6 @@
                     x.classList.toggle("go");
                 }
             });
-
             return die;
         }
 
@@ -587,6 +588,9 @@
                 var dieIndex = Math.floor(Math.random() * 6);
                 x.setAttribute("class", _faceClasses[dieIndex]);
             });
+            setTimeout(function() {
+                GetValueDice(actualPlayerFunction());
+            }, 1000)
         }
 
         function roll2() {
@@ -598,6 +602,9 @@
                 var dieIndex = Math.floor(Math.random() * 6);
                 x.setAttribute("class", _faceClasses[dieIndex]);
             });
+            setTimeout(function() {
+                GetValueDice(actualPlayerFunction());
+            }, 1000)
         }
 
         function addDie() {

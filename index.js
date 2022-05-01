@@ -23,6 +23,8 @@ function closeModalAndPlay() {
     leftBack.hidden = false;
     leftCache.hidden = false;
     startBackground.hidden = true;
+
+
 }
 
 function actualPlayerFunction() {
@@ -89,8 +91,40 @@ function VerificationForGrille(_value) {
             PossibleCase.push(_PossibleCase[i]);
         }
     }
+    var LastValue = [PossibleCase, value[0]];
 
-    var LastValue = [value[0], PossibleCase];
+    var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
+    var TableInput = ["CarreInputPlayerTwo", "BrelanInputPlayerTwo", "PetiteSuiteInputPlayerTwo", "GrandeSuiteInputPlayerTwo", "FullInputPlayerTwo", "YamInputPlayerTwo", "ChanceInputPlayerTwo"];
+    var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo"];
+
+    for (let i = 0; i < TableButton.length; i++) {
+        var toHidden = TableButton[i];
+        toHidden = document.getElementById(toHidden);
+        toHidden.hidden = true;
+    }
+    for (let i = 0; i < TableInput.length; i++) {
+        var toHidden = TableInput[i];
+        toHidden = document.getElementById(toHidden);
+        toHidden.value = 0;
+    }
+    for (let i = 0; i < TableDivVal.length; i++) {
+        var toHidden = TableDivVal[i];
+        toHidden = document.getElementById(toHidden);
+        if (toHidden.classList[1] != "isChoosen")
+            toHidden.textContent = "";
+    }
+    for (let i = 0; i < LastValue[0].length; i++) {
+        var toChangePoint = document.getElementById(LastValue[0][i][0] + 'Point' + LastValue[1]);
+        var toChangeButton = document.getElementById(LastValue[0][i][0] + LastValue[1] + "Button");
+        var toChangeInput = document.getElementById(LastValue[0][i][0] + "Input" + LastValue[1]);
+
+        if (toChangePoint.classList[1] != "isChoosen") {
+            toChangeButton.hidden = false;
+            toChangeInput.value = LastValue[0][i][1];
+            if (toChangePoint.textContent == "") toChangePoint.textContent = LastValue[0][i][1];
+        }
+    }
+
     console.log(LastValue)
 }
 
@@ -103,8 +137,11 @@ function Brelan(_value) {
         }
         if (count >= 3) Occurence.push(_value[i]);
     }
-    if (Occurence.length >= 3) return true;
-    else return false;
+    if (Occurence.length >= 3) {
+        var total = 0;
+        for (let i = 0; i < Occurence.length; i++) total += Occurence[i];
+        return total;
+    } else return false;
 }
 
 function PetiteSuite(_value) {
@@ -115,7 +152,7 @@ function PetiteSuite(_value) {
             if (_value.includes(_value[i] + 1) && _value.includes(_value[i] + 2) && _value.includes(_value[i] + 3)) Occurence.push(_value[i]);
         }
     }
-    if (Occurence.length != 0) return true;
+    if (Occurence.length != 0) return 20;
     else return false;
 }
 
@@ -127,7 +164,7 @@ function GrandeSuite(_value) {
             if (_value.includes(_value[i] + 1) && _value.includes(_value[i] + 2) && _value.includes(_value[i] + 3) && _value.includes(_value[i] + 4)) Occurence.push(_value[i]);
         }
     }
-    if (Occurence.length != 0) return true;
+    if (Occurence.length != 0) return 40;
     else return false;
 }
 
@@ -145,7 +182,7 @@ function Full(_value) {
             var Index = _value.indexOf(Occurence[i]);
             _value.splice(Index, 1);
         }
-        if (_value[0] == _value[1]) return true;
+        if (_value[0] == _value[1]) return 25;
         else return false;
     } else return false;
 }
@@ -159,8 +196,11 @@ function Carre(_value) {
         }
         if (count >= 4) Occurence.push(_value[i]);
     }
-    if (Occurence.length >= 4) return true;
-    else return false;
+    if (Occurence.length >= 4) {
+        var total = 0;
+        for (let i = 0; i < Occurence.length; i++) total += Occurence[i];
+        return total;
+    } else return false;
 }
 
 function Yam(_value) {
@@ -172,7 +212,7 @@ function Yam(_value) {
         }
         if (count == 5) Occurence.push(_value[i]);
     }
-    if (Occurence.length == 5) return true;
+    if (Occurence.length == 5) return 50;
     else return false;
 }
 
@@ -180,4 +220,24 @@ function Chance(_value) {
     var total = 0;
     for (let i = 0; i < _value.length; i++) total += _value[i];
     return total;
+}
+
+function AddToTable(name, player) {
+    var getDiv = document.getElementById(name + "Point" + player)
+    getDiv.style.opacity = 1;
+    getDiv.classList.add("isChoosen");
+    startTimer(0);
+    var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
+    for (let i = 0; i < TableButton.length; i++) {
+        var toHidden = TableButton[i];
+        toHidden = document.getElementById(toHidden);
+        toHidden.hidden = true;
+    }
+    var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo"];
+    for (let i = 0; i < TableDivVal.length; i++) {
+        var toHidden = TableDivVal[i];
+        toHidden = document.getElementById(toHidden);
+        if (toHidden.classList[1] != "isChoosen")
+            toHidden.textContent = "";
+    }
 }

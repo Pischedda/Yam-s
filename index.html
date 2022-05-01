@@ -9,12 +9,14 @@
     <!-- CSS Index & Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="/Yam-s/index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
     <title>Yam's</title>
 </head>
 
 <body style='background-color: #fff4ddb3!important; height: 58.5rem; overflow: hidden;'>
+    <div id="startBackground" style="width: 100%; position: absolute; height: 100%; z-index: 9999999; background-color: #000; opacity: 0.7;"></div>
     <div style="height: 100%;display: flex; ">
         <div style="width: 50%;">
             <div id="backgroundLeft" style="background-color: #000000; position: absolute; height: 100%; width: 50%; z-index: 99999;opacity: 0.6;" hidden></div>
@@ -463,10 +465,32 @@
         </div>
     </div>
 
+    <div id="StartModal" style="display: block;z-index: 99999999;" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2 style="font-family: cursive;text-decoration: underline;color: #cb3000;">REGLES :</h2>
+                    <p><br>Chaque joueur lance les dés tour à tour (il n’y a pas d’ordre précis, mais cela peut se faire dans le sens des aiguilles d’une montre pour faciliter la partie) et à trois reprise chacun. L’objectif est alors de réaliser des combinaisons
+                        précises (listées ci-dessous), le joueur peut lancer tous les dés ou seulement quelques-uns pour parvenir à ses fins. <br>Après chaque lancer, le joueur calcule ses points et inscrit le score réalisé dans l’une des cases sur la
+                        feuille de scores. La combinaison réalisée est alors bloquée et il devra en réaliser d’autres par la suite. <br>Lorsque les combinaisons de la section supérieure réalisent un total supérieur à 63 points, un bonus de 35 points est
+                        obtenu.
+                        <br><br><br> &#128683; Cette version de Jeu ce joue uniquement en Local à deux joueurs. &#128683;
+                    </p><br>
+                    <h2 style="font-family: cursive;text-decoration: underline;color: #cb3000;">EXEMPLE D'UN TOUR AU YAMS :</h2>
+                    <br><img src="./Image/Règles.PNG">
+
+                    <br><br><button onclick="closeModalAndPlay()" style="WIDTH: 98%;margin-top: 3rem;font-size: 2rem;" class="btn btn-success">COMMENCER A JOUER</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <!-- JS Index & Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- <script src="/Yam-s/index.js"></script> -->
+    <script src="index.js"></script>
+
 
 </body>
 
@@ -487,7 +511,6 @@
             timeInSecs--;
         } else {
             var leftBack = document.getElementById('backgroundLeft');
-            cacheRight
             var rightBack = document.getElementById('backgroundRight');
             var leftCache = document.getElementById('cacheLeft');
             var rightCache = document.getElementById('cacheRight');
@@ -513,9 +536,8 @@
         document.getElementById("countdown").innerHTML = pretty;
     }
 
-    startTimer(5); // 4 minutes in seconds
+    // startTimer(5); // 4 minutes in seconds
 
-    //Credits to Philip M from codingforum
 
     "use strict";
 

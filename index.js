@@ -35,10 +35,149 @@ function GetValueDice(Player) {
     var PlayerDice = document.getElementsByClassName("" + Player);
     PlayerDice = PlayerDice[0].firstElementChild.children;
     var allNumber = [];
+    var returnValue = []
 
     for (let i = 0; i < PlayerDice.length; i++) {
         var number = PlayerDice[i].firstElementChild.firstElementChild.children[1].classList.value;
         allNumber.push(number)
     }
-    console.log(Player + " : " + allNumber)
+    returnValue.push(Player, allNumber);
+    VerificationForGrille(returnValue);
+}
+
+function VerificationForGrille(_value) {
+    var valueNumber = [];
+    for (let i = 0; i < _value[1].length; i++) {
+        var number = 0;
+        switch (_value[1][i]) {
+            case 'one':
+                number = 1;
+                break;
+            case 'two':
+                number = 2;
+                break;
+            case 'three':
+                number = 3;
+                break;
+            case 'four':
+                number = 4;
+                break;
+            case 'five':
+                number = 5;
+                break;
+            case 'six':
+                number = 6;
+                break;
+        }
+        valueNumber.push(number);
+    }
+    var value = [_value[0], valueNumber];
+
+    var _PossibleCase = [
+        ["Chance", Chance(value[1])],
+        ["Brelan", Brelan(value[1])],
+        ["PetiteSuite", PetiteSuite(value[1])],
+        ["GrandeSuite", GrandeSuite(value[1])],
+        ["Full", Full(value[1])],
+        ["Carre", Carre(value[1])],
+        ["Yam", Yam(value[1])]
+    ]
+    var PossibleCase = []
+
+    for (let i = 0; i < _PossibleCase.length; i++) {
+        if (_PossibleCase[i][1] == true || Number.isInteger(_PossibleCase[i][1])) {
+            PossibleCase.push(_PossibleCase[i]);
+        }
+    }
+
+    var LastValue = [value[0], PossibleCase];
+    console.log(LastValue)
+}
+
+function Brelan(_value) {
+    var Occurence = [];
+    for (let i = 0; i < _value.length; i++) {
+        var count = 0;
+        for (let y = 0; y < _value.length; y++) {
+            if (_value[i] == _value[y]) count += 1;
+        }
+        if (count >= 3) Occurence.push(_value[i]);
+    }
+    if (Occurence.length >= 3) return true;
+    else return false;
+}
+
+function PetiteSuite(_value) {
+    _value.sort();
+    var Occurence = [];
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] != 5 || _value[i] != 6 || _value[i] != 4) {
+            if (_value.includes(_value[i] + 1) && _value.includes(_value[i] + 2) && _value.includes(_value[i] + 3)) Occurence.push(_value[i]);
+        }
+    }
+    if (Occurence.length != 0) return true;
+    else return false;
+}
+
+function GrandeSuite(_value) {
+    _value.sort();
+    var Occurence = [];
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 1 || _value[i] == 2) {
+            if (_value.includes(_value[i] + 1) && _value.includes(_value[i] + 2) && _value.includes(_value[i] + 3) && _value.includes(_value[i] + 4)) Occurence.push(_value[i]);
+        }
+    }
+    if (Occurence.length != 0) return true;
+    else return false;
+}
+
+function Full(_value) {
+    var Occurence = [];
+    for (let i = 0; i < _value.length; i++) {
+        var count = 0;
+        for (let y = 0; y < _value.length; y++) {
+            if (_value[i] == _value[y]) count += 1;
+        }
+        if (count >= 3) Occurence.push(_value[i]);
+    }
+    if (Occurence.length == 3) {
+        for (let i = 0; i < Occurence.length; i++) {
+            var Index = _value.indexOf(Occurence[i]);
+            _value.splice(Index, 1);
+        }
+        if (_value[0] == _value[1]) return true;
+        else return false;
+    } else return false;
+}
+
+function Carre(_value) {
+    var Occurence = [];
+    for (let i = 0; i < _value.length; i++) {
+        var count = 0;
+        for (let y = 0; y < _value.length; y++) {
+            if (_value[i] == _value[y]) count += 1;
+        }
+        if (count >= 4) Occurence.push(_value[i]);
+    }
+    if (Occurence.length >= 4) return true;
+    else return false;
+}
+
+function Yam(_value) {
+    var Occurence = [];
+    for (let i = 0; i < _value.length; i++) {
+        var count = 0;
+        for (let y = 0; y < _value.length; y++) {
+            if (_value[i] == _value[y]) count += 1;
+        }
+        if (count == 5) Occurence.push(_value[i]);
+    }
+    if (Occurence.length == 5) return true;
+    else return false;
+}
+
+function Chance(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) total += _value[i];
+    return total;
 }

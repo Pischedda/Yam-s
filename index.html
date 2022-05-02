@@ -305,7 +305,7 @@
                     <div class="divTableCell" style="font-size: 17px;text-align: center;background-color: #a3a3a3;border: 1px solid black;border-left: none;">&nbsp;</div>
                 </div>
             </div>
-
+            <p id="rollRestant" style="position: absolute;margin-left: 22rem;margin-top: 33.5rem;z-index: 9999;font-weight: bold;font-size: 1.3rem;">3 lancés restant</p>
             <button id="btnRollTwo" style="position: absolute;margin-left: 15rem;width: 22rem;margin-top: 30rem;z-index: 9999;" class="btn btn-success">LANCER LES DÈS</button>
 
             <div id="tools" hidden>
@@ -515,16 +515,21 @@
 </html>
 
 <script>
+    var nRoll = 0;
+    var nRollRestant = 3;
     var timeInSecs;
     var ticker;
+    var TableValue = [];
 
-    function startTimer(secs) {
+    function startTimer(secs, isBool) {
         timeInSecs = parseInt(secs);
-        ticker = setInterval("tick()", 1000);
+        ticker = setInterval("tick(" + isBool + ")", 1000);
     }
 
-    function tick() {
+    function tick(isBool) {
         var secs = timeInSecs;
+        var possibleValue = [];
+        var allPossibleValue = [];
         if (secs > 0) {
             timeInSecs--;
         } else {
@@ -544,10 +549,85 @@
                 leftCache.hidden = true;
                 rightCache.hidden = false;
             }
-            startTimer(590); // 4 minutes in seconds
+
+            startTimer(5, true); // 4 minutes in seconds
             clearInterval(ticker);
             var actualPlayer = actualPlayerFunction();
-            console.log(actualPlayer)
+            var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo"];
+            if (actualPlayer == "PlayerOne") {
+                nRollRestant = 3;
+                nRoll = 0;
+                var nLancees = document.getElementById('rollRestant');
+                nLancees.hidden = true;
+                for (let i = 0; i < TableDivVal.length; i++) {
+                    var toHidden = TableDivVal[i];
+                    toHidden = document.getElementById(toHidden);
+                    if (toHidden.classList[1] != "isChoosen") {
+                        possibleValue.push(TableDivVal[i]);
+                    }
+                }
+                allPossibleValue.length = 0;
+                console.log(possibleValue);
+                console.log(TableValue);
+
+                for (let i = 0; i < TableValue[0].length; i++) {
+                    for (let y = 0; y < possibleValue.length; y++) {
+                        var TablePoint = TableValue[0][i][0] + 'Point' + TableValue[1];
+                        var posiblePoint = possibleValue[y];
+                        if (TablePoint == posiblePoint) {
+                            allPossibleValue.push(possibleValue[y]);
+                        }
+                    }
+                }
+                // allPossibleValue = [...new Set(allPossibleValue)]
+                if (allPossibleValue.length != 0 || isBool == true) {
+                    var chooseValue = TableValue[0][Math.floor(Math.random() * TableValue[0].length)];
+                    var _chooseValue = [chooseValue[0], chooseValue[1], TableValue[1]]
+                    var getDiv = document.getElementById(_chooseValue[0] + "Point" + _chooseValue[2])
+
+
+                    getDiv.style.opacity = 1;
+                    getDiv.classList.add("isChoosen");
+                } else {
+                    var chooseValue = possibleValue[Math.floor(Math.random() * possibleValue.length)];
+                    var getDiv = document.getElementById(chooseValue);
+                    getDiv.innerHTML = '0';
+                    getDiv.style.opacity = 1;
+                    getDiv.classList.add("isChoosen");
+                }
+
+                var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
+                var TableInput = ["CarreInputPlayerTwo", "BrelanInputPlayerTwo", "PetiteSuiteInputPlayerTwo", "GrandeSuiteInputPlayerTwo", "FullInputPlayerTwo", "YamInputPlayerTwo", "ChanceInputPlayerTwo"];
+
+                for (let i = 0; i < TableButton.length; i++) {
+                    var toHidden = document.getElementById(TableButton[i]);
+                    toHidden.hidden = true;
+                }
+
+                for (let i = 0; i < TableInput.length; i++) {
+                    var toHidden = document.getElementById(TableInput[i]);
+                    toHidden.hidden = true;
+                }
+                for (let i = 0; i < TableDivVal.length; i++) {
+                    var toHidden = TableDivVal[i];
+                    toHidden = document.getElementById(toHidden);
+                    if (toHidden.classList[1] != "isChoosen")
+                        toHidden.textContent = "";
+                }
+                possibleValue.length = 0;
+                TableValue[0].length = 0;
+            } else {
+                allPossibleValue.length = 0;
+                possibleValue.length = 0;
+                nRollRestant = 3;
+                nRoll = 0;
+                var nLancees = document.getElementById('rollRestant');
+                nLancees.hidden = false;
+                nLancees.innerHTML = nRollRestant + " lancés restants";
+                nLancees.style.marginLeft = '22rem';
+                var DiceRoll = document.getElementById('btnRollTwo');
+                DiceRoll.disabled = false;
+            }
         }
 
 
@@ -580,7 +660,6 @@
         function createDie() {
             var template = _dieTemplate || getElement(".die-container");
             var die = template.cloneNode(true);
-            console.log(template);
 
             var spinners = getElements(".spin", die);
             alterElements(spinners, function(x) {
@@ -599,6 +678,9 @@
             });
             return die;
         }
+
+        var RollRestant = document.getElementById('rollRestant');
+        RollRestant.innerHTML = nRollRestant + " lancés restants";
 
         function roll1() {
             //console.log(/*getTime(), dieIndex+1,*/ _spinners.css('transform'));
@@ -620,9 +702,25 @@
                 var dieIndex = Math.floor(Math.random() * 6);
                 x.setAttribute("class", _faceClasses[dieIndex]);
             });
-            setTimeout(function() {
-                GetValueDice(actualPlayerFunction());
-            }, 1000)
+
+            var DiceRoll = document.getElementById('btnRollTwo');
+            DiceRoll.disabled = true;
+
+            if (nRoll != 2) {
+                setTimeout(function() {
+                    GetValueDice(actualPlayerFunction());
+                    DiceRoll.disabled = false;
+                }, 1000);
+                nRoll += 1;
+                nRollRestant -= 1;
+                RollRestant.innerHTML = nRollRestant + " lancés restants";
+            } else {
+                DiceRoll.disabled = true;
+                RollRestant.innerHTML = "Aucun lancés restants";
+                RollRestant.style.marginLeft = '20.5rem';
+
+
+            }
         }
 
         function addDie() {

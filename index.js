@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 function closeModalAndPlay() {
     $('#StartModal').modal('hide');
-    startTimer(590);
+    startTimer(5, false);
     leftBack.hidden = false;
     leftCache.hidden = false;
     startBackground.hidden = true;
@@ -124,7 +124,7 @@ function VerificationForGrille(_value) {
             if (toChangePoint.textContent == "") toChangePoint.textContent = LastValue[0][i][1];
         }
     }
-
+    TableValue = LastValue;
     console.log(LastValue)
 }
 
@@ -226,7 +226,8 @@ function AddToTable(name, player) {
     var getDiv = document.getElementById(name + "Point" + player)
     getDiv.style.opacity = 1;
     getDiv.classList.add("isChoosen");
-    startTimer(0);
+    startTimer(0, true);
+    clearInterval(ticker);
     var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
     for (let i = 0; i < TableButton.length; i++) {
         var toHidden = TableButton[i];

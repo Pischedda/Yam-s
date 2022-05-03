@@ -297,7 +297,7 @@
                         <div class="divTableCell divTotalDe" style="background-color: #d7d6d6;border-bottom: 1px solid black;">Total Colonne 1</div>
                         <div class="divTableCell" style="background-color: #d7d6d6;border-bottom: 1px solid black;border-right: 3px solid black;">&nbsp;</div>
                         <div class="divTableCell divTotalDe" style="background-color: #d7d6d6;border-bottom: 1px solid black;">Total Colonne 2</div>
-                        <div class="divTableCell" style="background-color: #d7d6d6;border-bottom: 1px solid black;">&nbsp;</div>
+                        <div class="divTableCell" style="font-size: 19px;padding: 0;text-align: center;opacity: 0.2;background-color: #d7d6d6;border-bottom: 1px solid black;" id="Total2">&nbsp;</div>
                     </div>
                     <div class="divTableCell" style="font-size: 17px;text-align: center;background-color: #a3a3a3;border: 1px solid black;border-right: none;"></div>
                     <div class="divTableCell" style="font-size: 17px;text-align: left;background-color: #a3a3a3;border: 1px solid black;border-left: none;border-right: 3px solid black;width: 20rem;">TOTAL GENERAL</div>
@@ -520,17 +520,52 @@
     var timeInSecs;
     var ticker;
     var TableValue = [];
+    var allPossibleValue = [];
 
     function startTimer(secs, isBool) {
         timeInSecs = parseInt(secs);
         ticker = setInterval("tick(" + isBool + ")", 1000);
+        allPossibleValue.length = 0;
+
     }
 
     function tick(isBool) {
         var secs = timeInSecs;
         var possibleValue = [];
-        var allPossibleValue = [];
+        var pValueDiffTwo = [];
+        var pValueDTwo = [];
+        var countTwo = false;
+        var nCount = 0;
         if (secs > 0) {
+            var actualPlayer = actualPlayerFunction();
+
+            if (actualPlayer == "PlayerTwo") {
+                var _TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo"];
+                for (let i = 0; i < _TableDivVal.length; i++) {
+                    var toHidden = _TableDivVal[i];
+                    toHidden = document.getElementById(toHidden);
+                    if (toHidden.classList[1] != "isChoosen") {
+                        pValueDTwo.push(_TableDivVal[i]);
+                    }
+                    if (toHidden.classList[1] == "isChoosen") {
+                        pValueDiffTwo.push(_TableDivVal[i]);
+                    }
+                }
+                if (pValueDTwo.length == 0 && countTwo != true) {
+                    countTwo = true;
+
+                    for (let i = 0; i < pValueDiffTwo.length; i++) {
+                        var toCount = pValueDiffTwo[i];
+                        toCount = document.getElementById(toCount);
+                        nCount += parseInt(toCount.textContent);
+                    }
+                    var totalDiv = document.getElementById("Total2");
+                    totalDiv.textContent = nCount;
+                    totalDiv.style.opacity = 1;
+
+                }
+            }
+
             timeInSecs--;
         } else {
             var leftBack = document.getElementById('backgroundLeft');
@@ -566,9 +601,6 @@
                         possibleValue.push(TableDivVal[i]);
                     }
                 }
-                allPossibleValue.length = 0;
-                console.log(possibleValue);
-                console.log(TableValue);
 
                 for (let i = 0; i < TableValue[0].length; i++) {
                     for (let y = 0; y < possibleValue.length; y++) {
@@ -579,22 +611,45 @@
                         }
                     }
                 }
-                // allPossibleValue = [...new Set(allPossibleValue)]
-                if (allPossibleValue.length != 0 || isBool == true) {
-                    var chooseValue = TableValue[0][Math.floor(Math.random() * TableValue[0].length)];
-                    var _chooseValue = [chooseValue[0], chooseValue[1], TableValue[1]]
-                    var getDiv = document.getElementById(_chooseValue[0] + "Point" + _chooseValue[2])
+
+                if (isBool != true) {
+                    // allPossibleValue = [...new Set(allPossibleValue)]
+                    if (allPossibleValue.length != 0) {
+                        var chooseValue = TableValue[0][Math.floor(Math.random() * TableValue[0].length)];
+                        var _chooseValue = [chooseValue[0], chooseValue[1], TableValue[1]]
+                        var getDiv = document.getElementById(_chooseValue[0] + "Point" + _chooseValue[2])
 
 
-                    getDiv.style.opacity = 1;
-                    getDiv.classList.add("isChoosen");
-                } else {
-                    var chooseValue = possibleValue[Math.floor(Math.random() * possibleValue.length)];
-                    var getDiv = document.getElementById(chooseValue);
-                    getDiv.innerHTML = '0';
-                    getDiv.style.opacity = 1;
-                    getDiv.classList.add("isChoosen");
+                        getDiv.style.opacity = 1;
+                        getDiv.classList.add("isChoosen");
+                        console.log(getDiv);
+
+                        allPossibleValue.length = 0;
+                        possibleValue.length = 0;
+                    } else {
+                        var chooseValue = possibleValue[Math.floor(Math.random() * possibleValue.length)];
+                        var getDiv = document.getElementById(chooseValue);
+                        getDiv.innerHTML = '0';
+                        getDiv.style.opacity = 1;
+                        getDiv.classList.add("isChoosen"); //
+                        console.log(getDiv);
+                        allPossibleValue.length = 0;
+                        possibleValue.length = 0;
+                    }
                 }
+
+                var _T = ["Brelan", "PetiteSuite", "GrandeSuite", "Full", "Carre", "Yam", "Chance"];
+
+                for (let i = 0; i < _T.length; i++) {
+                    var _id = _T[i] + 'PointPlayerTwo'
+                    var _v = document.getElementById(_id);
+                    console.log(_v);
+                    if (_v.innerHTML == "") {
+                        _v.className.length = 0;
+                        _v.className = "divTableCell";
+                    }
+                }
+
 
                 var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
                 var TableInput = ["CarreInputPlayerTwo", "BrelanInputPlayerTwo", "PetiteSuiteInputPlayerTwo", "GrandeSuiteInputPlayerTwo", "FullInputPlayerTwo", "YamInputPlayerTwo", "ChanceInputPlayerTwo"];

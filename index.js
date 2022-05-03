@@ -224,8 +224,10 @@ function Chance(_value) {
 
 function AddToTable(name, player) {
     var getDiv = document.getElementById(name + "Point" + player)
+
     getDiv.style.opacity = 1;
     getDiv.classList.add("isChoosen");
+
     startTimer(0, true);
     clearInterval(ticker);
     var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];

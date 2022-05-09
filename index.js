@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 function closeModalAndPlay() {
     $('#StartModal').modal('hide');
-    startTimer(5, false);
+    startTimer(15, false);
     leftBack.hidden = false;
     leftCache.hidden = false;
     startBackground.hidden = true;
@@ -125,7 +125,6 @@ function VerificationForGrille(_value) {
         }
     }
     TableValue = LastValue;
-    console.log(LastValue)
 }
 
 function Brelan(_value) {

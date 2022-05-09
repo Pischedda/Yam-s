@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 function closeModalAndPlay() {
     $('#StartModal').modal('hide');
-    startTimer(15, false);
+    startTimer(5, false);
     leftBack.hidden = false;
     leftCache.hidden = false;
     startBackground.hidden = true;
@@ -76,6 +76,12 @@ function VerificationForGrille(_value) {
     var value = [_value[0], valueNumber];
 
     var _PossibleCase = [
+        ["One", OneValue(value[1])],
+        ["Two", TwoValue(value[1])],
+        ["Three", ThreeValue(value[1])],
+        ["Four", FourValue(value[1])],
+        ["Five", FiveValue(value[1])],
+        ["Six", SixValue(value[1])],
         ["Chance", Chance(value[1])],
         ["Brelan", Brelan(value[1])],
         ["PetiteSuite", PetiteSuite(value[1])],
@@ -84,18 +90,19 @@ function VerificationForGrille(_value) {
         ["Carre", Carre(value[1])],
         ["Yam", Yam(value[1])]
     ]
-    var PossibleCase = []
+    var PossibleCase = [];
 
     for (let i = 0; i < _PossibleCase.length; i++) {
         if (_PossibleCase[i][1] == true || Number.isInteger(_PossibleCase[i][1])) {
             PossibleCase.push(_PossibleCase[i]);
         }
     }
+    console.log(PossibleCase);
     var LastValue = [PossibleCase, value[0]];
 
-    var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
-    var TableInput = ["CarreInputPlayerTwo", "BrelanInputPlayerTwo", "PetiteSuiteInputPlayerTwo", "GrandeSuiteInputPlayerTwo", "FullInputPlayerTwo", "YamInputPlayerTwo", "ChanceInputPlayerTwo"];
-    var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo"];
+    var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton", "OnePlayerTwoButton", "TwoPlayerTwoButton", "ThreePlayerTwoButton", "FourPlayerTwoButton", "FivePlayerTwoButton", "SixPlayerTwoButton"];
+    var TableInput = ["CarreInputPlayerTwo", "BrelanInputPlayerTwo", "PetiteSuiteInputPlayerTwo", "GrandeSuiteInputPlayerTwo", "FullInputPlayerTwo", "YamInputPlayerTwo", "ChanceInputPlayerTwo", "OneInputPlayerTwo", "TwoInputPlayerTwo", "ThreeInputPlayerTwo", "FourInputPlayerTwo", "FiveInputPlayerTwo", "SixInputPlayerTwo"];
+    var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo", "OnePointPlayerTwo", "TwoPointPlayerTwo", "ThreePointPlayerTwo", "FourPointPlayerTwo", "FivePointPlayerTwo", "SixPointPlayerTwo"];
 
     for (let i = 0; i < TableButton.length; i++) {
         var toHidden = TableButton[i];
@@ -221,6 +228,63 @@ function Chance(_value) {
     return total;
 }
 
+function OneValue(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 1) total += _value[i];
+    }
+    if (total == 0) return false;
+    else return total;
+}
+
+function TwoValue(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 2) total += _value[i];
+    }
+    if (total == 0) return false;
+    else return total;
+}
+
+function ThreeValue(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 3) total += _value[i];
+    }
+    if (total == 0) return false;
+    else return total;
+}
+
+function FourValue(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 4) total += _value[i];
+    }
+    if (total == 0) return false;
+    else return total;
+}
+
+function FiveValue(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 5) total += _value[i];
+    }
+    if (total == 0) return false;
+    else return total;
+}
+
+
+function SixValue(_value) {
+    var total = 0;
+    for (let i = 0; i < _value.length; i++) {
+        if (_value[i] == 6) total += _value[i];
+    }
+    if (total == 0) return false;
+    else return total;
+}
+
+
+
 function AddToTable(name, player) {
     var getDiv = document.getElementById(name + "Point" + player)
 
@@ -229,13 +293,13 @@ function AddToTable(name, player) {
 
     startTimer(0, true);
     clearInterval(ticker);
-    var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton"];
+    var TableButton = ["CarrePlayerTwoButton", "BrelanPlayerTwoButton", "PetiteSuitePlayerTwoButton", "GrandeSuitePlayerTwoButton", "FullPlayerTwoButton", "YamPlayerTwoButton", "ChancePlayerTwoButton", "OnePlayerTwoButton", "TwoPlayerTwoButton", "ThreePlayerTwoButton", "FourPlayerTwoButton", "FivePlayerTwoButton", "SixPlayerTwoButton"];
     for (let i = 0; i < TableButton.length; i++) {
         var toHidden = TableButton[i];
         toHidden = document.getElementById(toHidden);
         toHidden.hidden = true;
     }
-    var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo"];
+    var TableDivVal = ["BrelanPointPlayerTwo", "PetiteSuitePointPlayerTwo", "GrandeSuitePointPlayerTwo", "FullPointPlayerTwo", "CarrePointPlayerTwo", "YamPointPlayerTwo", "ChancePointPlayerTwo", "OnePointPlayerTwo", "TwoPointPlayerTwo", "ThreePointPlayerTwo", "FourPointPlayerTwo", "FivePointPlayerTwo", "SixPointPlayerTwo"];
     for (let i = 0; i < TableDivVal.length; i++) {
         var toHidden = TableDivVal[i];
         toHidden = document.getElementById(toHidden);

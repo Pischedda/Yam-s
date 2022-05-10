@@ -1,0 +1,9 @@
+{
+    "dependencies": {
+        "jest": "^28.1.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.15.0",
+        "eslint-plugin-react": "^7.29.4"
+    }
+}

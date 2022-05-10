@@ -1,9 +1,17 @@
 {
+    "name": "test",
+    "scripts": {
+        "test": "jest",
+        "build": "node index.js",
+        "lint": "eslint ."
+    },
     "dependencies": {
-        "jest": "^28.1.0"
+        "jest": "^28.1.0",
+        "jquery": "^3.6.0"
     },
     "devDependencies": {
         "eslint": "^8.15.0",
-        "eslint-plugin-react": "^7.29.4"
+        "eslint-plugin-react": "^7.29.4",
+        "jest-environment-jsdom": "^28.1.0"
     }
 }

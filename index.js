@@ -1,3 +1,7 @@
+if (!window.$) {
+    window.$ = require('../Yam-s/node_modules/jquery/dist/jquery');
+}
+
 var leftBack = document.getElementById('backgroundLeft');
 var rightBack = document.getElementById('backgroundRight');
 var leftCache = document.getElementById('cacheLeft');
@@ -307,3 +311,6 @@ function AddToTable(name, player) {
             toHidden.textContent = "";
     }
 }
+
+
+module.exports = FourValue;

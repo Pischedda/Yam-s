@@ -2,12 +2,16 @@
  * @jest-environment jsdom
  */
 
-const OneValue = require("..");
-const TwoValue = require("..");
-const ThreeValue = require("..");
-const FourValue = require("..");
-const FiveValue = require("..");
-const SixValue = require("..");
+const Value = require('../index');
+
+const OneValue = Value.OneValue;
+const TwoValue = Value.TwoValue;
+const ThreeValue = Value.ThreeValue;
+const FourValue = Value.FourValue;
+const FiveValue = Value.FiveValue;
+const SixValue = Value.SixValue;
+
+
 
 // VERIFICATION VALUE EGALE A 1 //
 test("OneValue", () => {

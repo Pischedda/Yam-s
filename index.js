@@ -313,4 +313,4 @@ function AddToTable(name, player) {
 }
 
 
-module.exports = FourValue;
+module.exports = { OneValue, TwoValue, ThreeValue, FourValue, FiveValue, SixValue, };

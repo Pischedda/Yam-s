@@ -10,18 +10,32 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  ci:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        
-    steps:
-    - name: Install dependencies 👨🏻‍💻
-      run: npm ci
+        os: [ubuntu-latest]
+        node: [14]
 
-    - name: Run linter 👀
-      run: eslint . --ext .js,.jsx,.ts,.tsx
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies 👨🏻‍💻
+        run: npm ci
+
+      - name: Run linter 👀
+        run: npm run lint

@@ -18,7 +18,10 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+        
     steps:
-    - name: Run ESLint
+    - name: Install dependencies 👨🏻‍💻
+      run: npm ci
+
+    - name: Run linter 👀
       run: eslint . --ext .js,.jsx,.ts,.tsx
